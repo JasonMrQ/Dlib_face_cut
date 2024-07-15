@@ -17,8 +17,8 @@ def main():
     detector = dlib.get_frontal_face_detector()
 
     # 创建 cv2 摄像头对象
-    # cap = cv2.VideoCapture("sample-videos/head-pose-face-detection-male.mp4") # 输入本地视频流
-    cap = cv2.VideoCapture(0)  # 输入摄像头视频流
+    cap = cv2.VideoCapture("data/videos/rain.mp4")# 输入本地视频流
+    # cap = cv2.VideoCapture(0)  # 输入摄像头视频流
 
     # 设置视频参数，propId 设置的视频参数，value 设置的参数值
     cap.set(3, 960)

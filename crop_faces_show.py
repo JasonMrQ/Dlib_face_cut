@@ -13,7 +13,7 @@ def main():
 
     # 读取图像
     path = "data/images/faces_for_test/"
-    img = cv2.imread(path + "test_faces_1.jpg")
+    img = cv2.imread(path + "rain2.jpg")
 
     # 检测人脸
     faces = detector(img, 1)

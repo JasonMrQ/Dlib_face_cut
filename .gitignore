@@ -1,0 +1,4 @@
+*.mp4
+videos/
+data/images/faces_for_test/
+data/images/faces_separated/

@@ -38,6 +38,8 @@ print(cap.isOpened())
 
 while cap.isOpened():
     ret_flag, img_camera = cap.read()
+    # 水平翻转图像，flipCode=1 表示水平翻转
+    img_camera = cv2.flip(img_camera, 1)
     cv2.imshow("camera", img_camera)
 
     # 每帧数据延时 1ms, 延时为0, 读取的是静态帧

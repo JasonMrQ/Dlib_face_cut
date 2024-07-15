@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="7d84929e-6bd2-4789-8d67-986d2f10430f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/faces_chip_from_camera.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/dlib/dlib_face_recognition_resnet_model_v1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_for_test/fh.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_for_test/jason1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_for_test/jason2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_for_test/jason3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_for_test/jst1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_for_test/jst2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_for_test/rain1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_for_test/rain2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_for_test/rain3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_for_test/rain4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_for_test/rock.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_for_test/rose.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_for_test/xt1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_10.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_11.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_12.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_13.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_14.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_15.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_16.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_17.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_18.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_19.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_20.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_21.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_22.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_23.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_24.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/faces_separated/img_face_9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/findFace.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Dlib_face_cut.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Dlib_face_cut.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop_faces_show.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop_faces_show.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/dlib/shape_predictor_68_face_landmarks.dat" beforeDir="false" afterPath="$PROJECT_DIR$/data/dlib/shape_predictor_68_face_landmarks.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/faces_for_test/test_faces_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/faces_for_test/test_faces_10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/faces_for_test/test_faces_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/faces_for_test/test_faces_3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/faces_for_test/test_faces_4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/faces_for_test/test_faces_5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/faces_for_test/test_faces_6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/faces_for_test/test_faces_7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/faces_for_test/test_faces_8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/faces_for_test/test_faces_9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/faces_chip_from_camera.py" beforeDir="false" afterPath="$PROJECT_DIR$/faces_chip_from_camera.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/faces_from_camera.py" beforeDir="false" afterPath="$PROJECT_DIR$/faces_from_camera.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/how_to_use_camera.py" beforeDir="false" afterPath="$PROJECT_DIR$/how_to_use_camera.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,44 +102,30 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1aUXdxjtLpmq872jRsrqpPis75Y" />
-  <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
-  <component name="RunManager" selected="Python.faces_clip_from_camera">
-    <configuration name="crop_faces_save" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Dlib_face_cut" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/crop_faces_save.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/baoqian/Documents/_Code/PythonCrawler/Dlib_face_cut/data/dlib&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data/dlib" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.findFace">
     <configuration name="crop_faces_show" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Dlib_face_cut" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -105,7 +147,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="faces_clip_from_camera" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="faces_chip_from_camera" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Dlib_face_cut" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -117,7 +159,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/faces_clip_from_camera.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/faces_chip_from_camera.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -147,7 +189,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="how_to_use_camera" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="findFace" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Dlib_face_cut" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/findFace.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="how_to_use_camera" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Dlib_face_cut" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -169,22 +232,23 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.faces_chip_from_camera" />
+      <item itemvalue="Python.findFace" />
       <item itemvalue="Python.crop_faces_show" />
       <item itemvalue="Python.faces_from_camera" />
       <item itemvalue="Python.how_to_use_camera" />
-      <item itemvalue="Python.crop_faces_save" />
-      <item itemvalue="Python.faces_clip_from_camera" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.faces_clip_from_camera" />
-        <item itemvalue="Python.faces_from_camera" />
+        <item itemvalue="Python.findFace" />
+        <item itemvalue="Python.faces_chip_from_camera" />
         <item itemvalue="Python.crop_faces_show" />
         <item itemvalue="Python.how_to_use_camera" />
-        <item itemvalue="Python.crop_faces_save" />
+        <item itemvalue="Python.faces_from_camera" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -203,9 +267,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>

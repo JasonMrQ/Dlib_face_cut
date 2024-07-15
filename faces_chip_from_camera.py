@@ -28,7 +28,7 @@ def main():
 
     while cap.isOpened():
         flag, img_rd = cap.read()
-
+        img_rd = cv2.flip(img_rd, 1)
         # 每帧数据延时 1ms，延时为 0 读取的是静态帧
         k = cv2.waitKey(1)
 
