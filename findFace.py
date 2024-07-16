@@ -9,7 +9,7 @@ import threading
 class FaceRecognitionApp(wx.Frame):
     def __init__(self, parent, title):
         super(FaceRecognitionApp, self).__init__(parent, title=title, size=(800, 600))
-
+        self.SetMinSize((800, 600))
         panel = wx.Panel(self)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
@@ -22,14 +22,16 @@ class FaceRecognitionApp(wx.Frame):
         self.video_panel.SetBackgroundColour(wx.BLACK)
         self.video_bitmap = wx.StaticBitmap(self.video_panel)
         self.slider = wx.Slider(panel, style=wx.SL_HORIZONTAL)
+        self.time_display = wx.StaticText(panel, label="00:00")
 
         hbox_controls = wx.BoxSizer(wx.HORIZONTAL)
         hbox_controls.Add(self.play_pause_btn, flag=wx.RIGHT, border=5)
-        hbox_controls.Add(self.forward_btn, flag=wx.RIGHT, border=5)
         hbox_controls.Add(self.backward_btn, flag=wx.RIGHT, border=5)
+        hbox_controls.Add(self.forward_btn, flag=wx.RIGHT, border=5)
 
         vbox.Add(self.video_panel, proportion=1, flag=wx.EXPAND | wx.ALL, border=10)
-        vbox.Add(self.slider, flag=wx.EXPAND | wx.ALL, border=10)
+        vbox.Add(self.slider, flag=wx.EXPAND | wx.ALL, border=5)
+        vbox.Add(self.time_display, flag=wx.ALIGN_CENTER | wx.ALL, border=5)
         vbox.Add(hbox_controls, flag=wx.EXPAND | wx.ALL, border=10)
         vbox.Add(self.load_image_btn, flag=wx.EXPAND | wx.ALL, border=10)
         vbox.Add(self.load_video_btn, flag=wx.EXPAND | wx.ALL, border=10)
@@ -42,6 +44,7 @@ class FaceRecognitionApp(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.on_forward, self.forward_btn)
         self.Bind(wx.EVT_BUTTON, self.on_backward, self.backward_btn)
         self.Bind(wx.EVT_SLIDER, self.on_seek, self.slider)
+        self.Bind(wx.EVT_SIZE, self.on_resize)
 
         self.timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.on_update)
@@ -54,7 +57,6 @@ class FaceRecognitionApp(wx.Frame):
         self.sp = dlib.shape_predictor("data/dlib/shape_predictor_68_face_landmarks.dat")
         self.facerec = dlib.face_recognition_model_v1("data/dlib/dlib_face_recognition_resnet_model_v1.dat")
 
-        self.SetSizeHints(800, 600, 800, 600)
         self.Centre()
         self.Show()
 
@@ -84,8 +86,6 @@ class FaceRecognitionApp(wx.Frame):
                 self.reference_image_path)
             if self.reference_face_descriptor is None:
                 wx.MessageBox("Failed to load external face descriptor.", "Error", wx.OK | wx.ICON_ERROR)
-            # else:
-            #     wx.MessageBox("Reference image loaded successfully!", "Success", wx.OK | wx.ICON_INFORMATION)
 
     def compute_face_descriptor(self, image_path):
         img = cv2.imread(image_path)
@@ -108,7 +108,6 @@ class FaceRecognitionApp(wx.Frame):
             return
 
         self.video_path = openFileDialog.GetPath()
-        wx.MessageBox("Video file loaded successfully!", "Success", wx.OK | wx.ICON_INFORMATION)
         self.cap = cv2.VideoCapture(self.video_path)
         self.total_frames = int(self.cap.get(cv2.CAP_PROP_FRAME_COUNT))
         self.frame_rate = int(self.cap.get(cv2.CAP_PROP_FPS))
@@ -166,7 +165,7 @@ class FaceRecognitionApp(wx.Frame):
                 face_descriptor = np.array(face_descriptor)
 
                 self.dist = np.linalg.norm(self.reference_face_descriptor - face_descriptor)
-                if self.dist < 0.4:
+                if self.dist <= 0.4:
                     self.tracker.start_track(frame_rgb, d)
                     self.tracking_face = True
                     self.match_found = True
@@ -199,38 +198,54 @@ class FaceRecognitionApp(wx.Frame):
         wx.CallAfter(self.update_time_display, current_frame)
 
     def create_combined_image(self, frame):
-        external_face_img = cv2.resize(self.reference_face_img, (128, 128))
+        if frame is None:
+            return
         h, w = frame.shape[:2]
         aspect_ratio = w / h
-        new_w = 640
-        new_h = int(new_w / aspect_ratio)
+        panel_w, panel_h = self.video_panel.GetSize().GetWidth(), self.video_panel.GetSize().GetHeight()
 
-        if new_h > 480:
-            new_h = 480
+        new_w = panel_w
+        new_h = int(new_w / aspect_ratio)
+        if new_h > panel_h:
+            new_h = panel_h
             new_w = int(new_h * aspect_ratio)
 
         resized_frame = cv2.resize(frame, (new_w, new_h))
-        combined_image = np.zeros((480, 192 + new_w, 3), dtype=np.uint8)
-        combined_image[20:148, 20:148] = external_face_img
-        combined_image[:new_h, 192:192 + new_w] = resized_frame
-        # cv2.putText(combined_image, "Press 'p' to pause/resume", (20, 180), cv2.FONT_HERSHEY_SIMPLEX, 0.5,
-        #             (255, 255, 255), 1)
+        combined_image = np.zeros((panel_h, panel_w, 3), dtype=np.uint8)
+        combined_image.fill(0)
+
+        x_offset = (panel_w - new_w) // 2
+        y_offset = (panel_h - new_h) // 2
+        combined_image[y_offset:y_offset + new_h, x_offset:x_offset + new_w] = resized_frame
+
+        # Overlay reference image at the top left corner of the combined image
+        reference_image_resized = cv2.resize(self.reference_face_img, (128, 128))
+        combined_image[:128, :128] = reference_image_resized
+
         return combined_image
 
+
     def update_video_frame(self, combined_image):
+        if combined_image is None:
+            return
         height, width = combined_image.shape[:2]
         bitmap = wx.Bitmap.FromBuffer(width, height, combined_image)
         self.video_bitmap.SetBitmap(bitmap)
         self.video_panel.Layout()
 
+
     def update_time_display(self, current_frame):
         total_seconds = current_frame // self.frame_rate
         minutes = total_seconds // 60
         seconds = total_seconds % 60
-        self.slider.SetToolTip(f"{minutes:02}:{seconds:02}")
+        self.time_display.SetLabel(f"{minutes:02}:{seconds:02}")
 
 
-if __name__ == '__main__':
+    def on_resize(self, event):
+        self.Layout()
+        event.Skip()
+
+if __name__ == "__main__":
     app = wx.App()
     FaceRecognitionApp(None, title='Face Recognition')
     app.MainLoop()
