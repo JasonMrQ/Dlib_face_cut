@@ -180,7 +180,8 @@ class FaceRecognitionApp(wx.Frame):
     def on_update(self, event):
         if not self.cap:
             return
-
+        if self.reference_face_descriptor is None:
+            return
         ret, frame = self.cap.read()
         if not ret:
             return
@@ -208,26 +209,23 @@ class FaceRecognitionApp(wx.Frame):
 
         if self.tracking_face:
             self.tracker.update(frame_rgb)
-            pos = self.tracker.get_position()
-            pt1 = (int(pos.left()), int(pos.top()))
-            pt2 = (int(pos.right()), int(pos.bottom()))
-            match_percentage = (1 - self.dist) * 100
-            cv2.rectangle(frame_rgb, pt1, pt2, (0, 255, 0), 2)
-            cv2.putText(frame_rgb, f"Matched: {match_percentage:.2f}%", (pt1[0], pt1[1] - 10), cv2.FONT_HERSHEY_SIMPLEX,
-                        1.0, (0, 255, 0), 2)
-            if time.time() - self.match_start_time > 5:
-                self.tracking_face = False
-                self.match_found = False
-
-            self.frame_count += 1
-
-            combined_image = self.create_combined_image(frame_rgb)
-
-            wx.CallAfter(self.update_video_frame, combined_image)
-
-            current_frame = int(self.cap.get(cv2.CAP_PROP_POS_FRAMES))
-            self.slider.SetValue(current_frame)
-            wx.CallAfter(self.update_time_display, current_frame)
+            if self.dist < 0.4:
+                pos = self.tracker.get_position()
+                pt1 = (int(pos.left()), int(pos.top()))
+                pt2 = (int(pos.right()), int(pos.bottom()))
+                match_percentage = (1 - self.dist) * 100
+                cv2.rectangle(frame_rgb, pt1, pt2, (0, 255, 0), 2)
+                cv2.putText(frame_rgb, f"Matched: {match_percentage:.2f}%", (pt1[0], pt1[1] - 10), cv2.FONT_HERSHEY_SIMPLEX,
+                            1.0, (0, 255, 0), 2)
+        if time.time() - self.match_start_time > 5:
+            self.tracking_face = False
+            self.match_found = False
+        self.frame_count += 1
+        combined_image = self.create_combined_image(frame_rgb)
+        wx.CallAfter(self.update_video_frame, combined_image)
+        current_frame = int(self.cap.get(cv2.CAP_PROP_POS_FRAMES))
+        self.slider.SetValue(current_frame)
+        wx.CallAfter(self.update_time_display, current_frame)
 
     def create_combined_image(self, frame):
         if frame is None:
@@ -276,8 +274,6 @@ class FaceRecognitionApp(wx.Frame):
 
     def on_resize(self, event):
         # 刷新示图位置
-        self.video_bitmap.Centre()
-        self.video_panel.Layout()
         self.on_update(None)
         self.Layout()
         event.Skip()
