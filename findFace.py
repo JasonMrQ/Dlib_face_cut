@@ -51,6 +51,7 @@ class FaceRecognitionApp(wx.Frame):
         self.Bind(wx.EVT_TIMER, self.on_update)
 
         self.reference_image_path = None
+        self.reference_face_img = None
         self.video_path = None
         self.reference_face_descriptor = None
 
@@ -105,6 +106,8 @@ class FaceRecognitionApp(wx.Frame):
         return np.array(face_descriptor), img_rgb
 
     def display_reference_image(self):
+        if self.reference_face_img is None:
+            return
         reference_image_resized = cv2.resize(self.reference_face_img, (128, 128))
         self.update_video_frame(reference_image_resized)
 
@@ -121,6 +124,8 @@ class FaceRecognitionApp(wx.Frame):
         self.frame_rate = int(self.cap.get(cv2.CAP_PROP_FPS))
         self.slider.SetRange(0, self.total_frames)
         self.update_video_frame(self.get_frame(0))
+
+        self.on_update(event)
 
     def on_play_pause(self, event):
         if not self.cap:
@@ -163,6 +168,7 @@ class FaceRecognitionApp(wx.Frame):
             self.timer.Stop()
             self.update_time_display(self.slider.GetValue())
             self.update_video_frame(self.get_frame(self.slider.GetValue()))
+            self.on_update(None)
 
     def get_frame(self, frame_number):
         self.cap.set(cv2.CAP_PROP_POS_FRAMES, frame_number)
@@ -269,6 +275,10 @@ class FaceRecognitionApp(wx.Frame):
         self.time_display.SetLabel(f"{minutes:02}:{seconds:02} / {total_minutes:02}:{total_seconds:02}")
 
     def on_resize(self, event):
+        # 刷新示图位置
+        self.video_bitmap.Centre()
+        self.video_panel.Layout()
+        self.on_update(None)
         self.Layout()
         event.Skip()
 
