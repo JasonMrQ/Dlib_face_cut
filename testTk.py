@@ -2,34 +2,43 @@ import wx
 
 
 class MyFrame(wx.Frame):
-    def __init__(self, parent, title):
-        super(MyFrame, self).__init__(parent, title=title, size=(800, 600))
+    def __init__(self, *args, **kw):
+        super(MyFrame, self).__init__(*args, **kw)
 
-        # 设置窗口的初始大小
-        self.SetSize(800, 600)
-
-        # 设置窗口的最小和最大大小
-        self.SetMinSize((400, 300))
-        self.SetMaxSize((1024, 768))
-
-        self.Centre()  # 窗口居中
-
-        # 添加一个简单的面板和按钮
         panel = wx.Panel(self)
-        button = wx.Button(panel, label="点击我", pos=(350, 250))
+        vbox = wx.BoxSizer(wx.VERTICAL)
 
-        self.Bind(wx.EVT_BUTTON, self.on_button_click, button)
+        # 创建一个 wx.Choice 控件
+        choices = ['Option 1', 'Option 2', 'Option 3']
+        choice_ctrl = wx.Choice(panel, choices=choices)
+        choice_ctrl.SetSelection(0)  # 默认选择第一个选项
+
+        vbox.Add(choice_ctrl, flag=wx.EXPAND | wx.ALL, border=10)
+
+        # 添加一个按钮，用于显示选择的选项
+        button = wx.Button(panel, label="Show Selection")
+        button.Bind(wx.EVT_BUTTON, lambda event: self.show_selection(choice_ctrl))
+
+        vbox.Add(button, flag=wx.EXPAND | wx.ALL, border=10)
+
+        panel.SetSizer(vbox)
+
+        self.SetTitle("wx.Choice Example")
+        self.SetSize((400, 200))
+        self.Centre()
+
+    def show_selection(self, choice_ctrl):
+        selection = choice_ctrl.GetString(choice_ctrl.GetSelection())
+        wx.MessageBox(f"You selected: {selection}", "Selection", wx.OK | wx.ICON_INFORMATION)
 
 
-
-
-    def on_button_click(self, event):
-        # wx.MessageBox("按钮被点击了！", "提示", wx.OK | wx.ICON_INFORMATION)
-        wx.adv.CreateFileTipProvider()
+class MyApp(wx.App):
+    def OnInit(self):
+        frame = MyFrame(None)
+        frame.Show(True)
+        return True
 
 
 if __name__ == "__main__":
-    app = wx.App(False)
-    frame = MyFrame(None, "wxPython 示例")
-    frame.Show(True)
+    app = MyApp()
     app.MainLoop()
