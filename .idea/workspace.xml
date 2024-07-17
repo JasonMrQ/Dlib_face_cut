@@ -7,7 +7,6 @@
     <list default="true" id="7d84929e-6bd2-4789-8d67-986d2f10430f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/findFace.py" beforeDir="false" afterPath="$PROJECT_DIR$/findFace.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testTk.py" beforeDir="false" afterPath="$PROJECT_DIR$/testTk.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,7 +221,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/findFace.py</url>
-          <line>155</line>
+          <line>156</line>
           <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>

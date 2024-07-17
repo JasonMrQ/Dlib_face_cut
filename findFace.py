@@ -70,7 +70,7 @@ class FaceRecognitionApp(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.on_backward, self.backward_btn)
         self.Bind(wx.EVT_BUTTON, self.on_speed_change, self.speed_btn)
         self.Bind(wx.EVT_CHECKBOX, self.on_use_camera, self.usrCameraCheckbox)
-        self.Bind(wx.EVT_CHOICE, self.on_chioce_camera, self.choice_ctrl)
+        self.Bind(wx.EVT_CHOICE, self.on_choice_camera, self.choice_ctrl)
         self.Bind(wx.EVT_SLIDER, self.on_seek, self.slider)
 
         self.timer = wx.Timer(self)
@@ -98,6 +98,7 @@ class FaceRecognitionApp(wx.Frame):
         self.isUseCamera = False
         self.total_frames = 1
         self.frame_rate = 1
+        self.camera_type = 0  # 0:本设备自带像机 1：网络像机
 
         self.Bind(wx.EVT_SIZE, self.on_resize)
         self.Centre()
@@ -162,8 +163,14 @@ class FaceRecognitionApp(wx.Frame):
                     wx.MessageBox("Please input right url. support RTSP|HTTP|HTTPS.", "Error", wx.OK | wx.ICON_ERROR)
                     return False
                 self.cap = cv2.VideoCapture(video_path)
+            if self.cap.isOpened() is False:
+                wx.MessageBox("Camera open failed, please check.", "Error", wx.OK | wx.ICON_ERROR)
+                self.cap.release()
+                self.cap = None
+                return False
         else:
             if os.path.exists(video_path) is False:
+                wx.MessageBox("Video file open failed, please check.", "Error", wx.OK | wx.ICON_ERROR)
                 return False
             self.cap = cv2.VideoCapture(video_path)
         self.total_frames = int(self.cap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -175,9 +182,14 @@ class FaceRecognitionApp(wx.Frame):
 
     def on_play_pause(self, event):
         if not self.cap:  # self.video_path_tcl.GetValue()
-            self.use_video(self.video_path_tcl.GetValue())
+            rst = self.use_video(self.video_path_tcl.GetValue())
+            if rst is False:
+                return
         if not self.cap:
             wx.MessageBox("Please load the video file first.", "Error", wx.OK | wx.ICON_ERROR)
+            return
+        if self.cap.isOpened() is False:
+            wx.MessageBox("Camera open failed, please check", "Error", wx.OK | wx.ICON_ERROR)
             return
         self.playing = not self.playing
         self.play_pause_btn.SetLabel("Pause" if self.playing else "Play")
@@ -211,9 +223,7 @@ class FaceRecognitionApp(wx.Frame):
     def on_use_camera(self, event):
         checkbox = event.GetEventObject()
         self.isUseCamera = checkbox.IsChecked()
-        if self.isUseCamera:
-            print("dddd")
-        else:
+        if self.isUseCamera is False:
             # 释放所有摄像头
             if self.cap:
                 self.cap.release()
@@ -223,7 +233,10 @@ class FaceRecognitionApp(wx.Frame):
         self.choice_ctrl.Show(self.isUseCamera)
         self.video_path_tcl.Show(not self.isUseCamera or (self.isUseCamera and self.choice_ctrl.GetSelection() != 0))
 
-    def on_chioce_camera(self, event):
+    def on_choice_camera(self, event):
+        if self.camera_type == self.choice_ctrl.GetSelection():
+            return
+        self.camera_type = self.choice_ctrl.GetSelection()
         self.video_path_tcl.Show(self.isUseCamera and self.choice_ctrl.GetSelection() != 0)
         if self.cap:
             self.cap.release()
